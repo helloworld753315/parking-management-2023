@@ -1,0 +1,11 @@
+.env
+detection/pytorch_yolov3
+*.json
+*.env
+*.png
+*.jpg
+*.txt
+*.env
+*.mp4
+**/node_modules
+*.csv
