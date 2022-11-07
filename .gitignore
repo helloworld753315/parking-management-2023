@@ -7,5 +7,6 @@ detection/pytorch_yolov3
 *.txt
 *.env
 *.mp4
-**/node_modules
+**/node_modules/
 *.csv
+*.DS_Store
