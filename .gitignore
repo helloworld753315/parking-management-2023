@@ -11,3 +11,4 @@ detection/pytorch_yolov3
 *.csv
 *.DS_Store
 /objective_count/yolov5*
+config.csv
