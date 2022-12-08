@@ -28,11 +28,13 @@ def list_to_string(li):
 
 
 # 必要なファイルをコピーする
-def remove(input_path, output_path):
+def remove(import_text_path, import_image_path, export_path):
     # 画像ファイル
-    images = glob.glob(f'{input_path}/*.*')
+    images = glob.glob(f'{import_image_path}/*.*')
+    '''
     # txtファイル
-    txts = glob.glob(f'{input_path}/labels/**/*[.txt]')
+    txtes = glob.glob(f'{import_text_path}/fixed_labels/**/*[.txt]')
+    '''
 
     # データセットの配分
     datasets_rate = calc_rate(images, 0.8, 0, 0.2)
@@ -55,9 +57,9 @@ def remove(input_path, output_path):
     # train/test/valにコピー
     print("train作成...")
     for image in train:
-        input_text_path = f'{input_path}/labels/{image.split("/")[-1].split(".")[0]}.txt'
-        output_image_path = f'./tmp/{output_path}/train'
-        output_text_path = f'./tmp/{output_path}/train'
+        input_text_path = f'{import_text_path}/fixed_labels/{image.split("/")[-1].split(".")[0]}.txt'
+        output_image_path = f'./tmp/{export_path}/train'
+        output_text_path = f'./tmp/{export_path}/train'
         shutil.copy(image, output_image_path)
         try:
             shutil.copy(input_text_path, output_text_path)
@@ -66,9 +68,9 @@ def remove(input_path, output_path):
     
     print("test作成...")
     for image in test:
-        input_text_path = f'{input_path}/labels/{image.split("/")[-1].split(".")[0]}.txt'
-        output_image_path = f'./tmp/{output_path}/test'
-        output_text_path = f'./tmp/{output_path}/test'
+        input_text_path = f'{import_text_path}/fixed_labels/{image.split("/")[-1].split(".")[0]}.txt'
+        output_image_path = f'./tmp/{export_path}/test'
+        output_text_path = f'./tmp/{export_path}/test'
         shutil.copy(image, output_image_path)
         try:
             shutil.copy(input_text_path, output_text_path)
@@ -78,9 +80,9 @@ def remove(input_path, output_path):
 
     print("val作成...")
     for image in val:
-        input_text_path = f'{input_path}/labels/{image.split("/")[-1].split(".")[0]}.txt'
-        output_image_path = f'./tmp/{output_path}/val'
-        output_text_path = f'./tmp/{output_path}/val'
+        input_text_path = f'{import_text_path}/fixed_labels/{image.split("/")[-1].split(".")[0]}.txt'
+        output_image_path = f'./tmp/{export_path}/val'
+        output_text_path = f'./tmp/{export_path}/val'
         shutil.copy(image, output_image_path)
         try:
             shutil.copy(input_text_path, output_text_path)
@@ -89,11 +91,12 @@ def remove(input_path, output_path):
 
 def main():
     load_dotenv()
-    import_path = os.environ['SHAPE_INPUT_DIR']
+    import_text_path = os.environ['SHAPE_INPUT_TEXT_DIR']
+    import_image_path = os.environ['SHAPE_INPUT_IMAGE_DIR']
     export_path = os.environ['SHAPE_OUTPUT_DIR']
     make_dir(export_path)
 
-    remove(import_path, export_path)
+    remove(import_text_path, import_image_path, export_path)
 
 if __name__ == "__main__":
     main()

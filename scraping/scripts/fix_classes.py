@@ -58,7 +58,7 @@ def import_class_files(import_path, fixed_text_path, config):
             line = line.replace('\n', '')
             split_line = line.split(' ')
             class_id = int(split_line[0])
-            bbox = ''.join(split_line[1:])
+            bbox = ' '.join(split_line[1:])
             before_class = int(config[0]['before'])
             after_class = int(config[0]['after'])
             # csvに記載されたclassを探して修正・それをfixed_labelsに格納する
@@ -79,8 +79,8 @@ def import_class_files(import_path, fixed_text_path, config):
 
 def main():
     load_dotenv()
+    import_path = os.environ['SHAPE_INPUT_TEXT_DIR']
     fixed_text_path = os.environ['FIX_OUTPUT_DIR']
-    import_path = os.environ['SHAPE_INPUT_DIR']
     make_dir(import_path, fixed_text_path)
     config = import_config()
     import_class_files(import_path, fixed_text_path, config)
