@@ -10,3 +10,6 @@ detection/pytorch_yolov3
 **/node_modules/
 *.csv
 *.DS_Store
+/objective_count/yolov5*
+config.csv
+/scraping/**/*.yml
