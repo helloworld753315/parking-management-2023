@@ -4,6 +4,7 @@ detection/pytorch_yolov3
 *.env
 *.png
 *.jpg
+*.gif
 *.txt
 *.env
 *.mp4
